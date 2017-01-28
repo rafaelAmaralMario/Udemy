@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 16px;
+    font-family: "Trebouchet MS", Helvetica, sans-serif;
+    background: #f3f3f3;
+}
+
+a {
+    color: #838383;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+
+/*ID's*/
+
+#header {
+    background: #fff;
+    border: 1px solid #d8d8d8;
+    height: 45px;
+}
+
+#area {
+    width: 720px;
+    margin: 0 auto;
+}
+
+#logo {
+    float: left;
+}
+
+#menu {
+    float: right;
+    padding: 10px;
+}
+
+#principal-area {
+    width: 720px;
+    margin: 10px auto 10px auto;
+}
+
+#posts {
+    background: #fff;
+    padding: 10px;
+}
+
+#footer {
+    width: 720px;
+    margin: 10px auto 10px auto;
+}
+
+
+/*Events*/
+
+
+/*Unvisited Links*/
+
+
+/*Visited Links*/
+
+a:hover {
+    background: #b9c941;
+    color: #fff;
+}
+
+a:active {
+    background: #9BA836;
+    color: #fff;
+}
+
+
+/*CLASSES*/
+
+.green {
+    color: #b9c941;
+}
