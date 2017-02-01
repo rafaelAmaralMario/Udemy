@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Positioning</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        .clear {
+            clear: both;
+        }
+        
+        body {
+            background: #61bd8c;
+        }
+        
+        .principal-content {
+            background: #FFFFFF;
+            padding: 10px;
+            width: 600px;
+            margin: 30px auto;
+            margin-top: 120px;
+            height: 2500px;
+        }
+        
+        .box {
+            background: #1e6f44;
+            width: 100px;
+            height: 100px;
+            color: #FFFFFF;
+        }
+        
+        .relative {
+            position: relative;
+            left: -10px;
+            width: 660px;
+            top: 0;
+        }
+        
+        .absolute {
+            position: absolute;
+            right: 30px;
+            bottom: 0;
+        }
+        
+        .fixed {
+            background: #000;
+            position: fixed;
+            left: 0;
+            top: 0px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="principal-content">
+        <h1> Positioning </h1>
+
+        <h4>Relative</h4>
+        <div class="box relative">
+            Relative
+        </div>
+
+        <h4>Absolute</h4>
+        <div class="box absolute">
+            Absolute
+        </div>
+
+        <h4>Fixed</h4>
+        <div class="box fixed">
+            Fixed
+        </div>
+
+    </div>
+</body>
+
+</html>

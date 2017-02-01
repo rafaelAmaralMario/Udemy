@@ -1,0 +1,35 @@
+@keyframes animacao-box {
+    from {
+        background: #009670;
+        border-radius: 0px;
+        top: 0;
+        left: 0px;
+    }
+    to {
+        background: red;
+        border-radius: 400px;
+        top: 400px;
+        left: 450px;
+    }
+}
+
+#box {
+    width: 400px;
+    height: 400px;
+    margin: 50px auto;
+    padding: 10px;
+    background: #009670;
+    position: relative;
+    /*animation-name: animacao-box;
+    animation-duration: 5s;
+    animation-delay: 1s;
+    animation-iteration-count: 2;
+    animation-direction: alternate;
+    */
+    animation: animacao-box 5s 1s 2 alternate;
+}
+
+#box h1 {
+    font-size: 60px;
+    color: #fff;
+}
