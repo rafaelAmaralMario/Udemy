@@ -1,0 +1,49 @@
+/*Animations*/
+
+@keyframes pulse {
+    0% {
+        height: 35px;
+    }
+    50% {
+        height: 40px;
+    }
+    100% {
+        height: 35px;
+    }
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        height: 35px;
+    }
+    50% {
+        height: 40px;
+    }
+    100% {
+        height: 35px;
+    }
+}
+
+@-moz-keyframes pulse {
+    0% {
+        height: 35px;
+    }
+    50% {
+        height: 40px;
+    }
+    100% {
+        height: 35px;
+    }
+}
+
+@-o-keyframes pulse {
+    0% {
+        height: 35px;
+    }
+    50% {
+        height: 40px;
+    }
+    100% {
+        height: 35px;
+    }
+}
