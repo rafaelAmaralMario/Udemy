@@ -24,8 +24,31 @@
     <div class="container">
 
         <div class="page-header">
-            <h1>Bootstrap ....</h1>
+            <h1>Bootstrap Tabs</h1>
+            <p class="lead">Alterne entre conteudos</p>
         </div>
+        <ul class="nav nav-pills" role="tablist">
+            <li class="active"><a href="#info" role="tab" data-toggle="tab">Informações</a></li>
+            <li><a href="#aval" role="tab" data-toggle="tab">Avaliações</a></li>
+            <li><a href="#compre" role="tab" data-toggle="tab">Compre</a></li>
+        </ul>
+
+        <div class="tab-content">
+
+            <div class="tab-pane active" role="tabpanel" id="info">
+                <h2>Informações</h2>
+            </div>
+
+            <div class="tab-pane" role="tabpanel" id="aval">
+                <h2>Avaliações</h2>
+            </div>
+
+            <div class="tab-pane" role="tabpanel" id="compre">
+                <h2>Compre</h2>
+            </div>
+        </div>
+
+
 
 
     </div>

@@ -24,13 +24,24 @@
     <div class="container">
 
         <div class="page-header">
-            <h1>Bootstrap ....</h1>
+            <h1>Bootstrap Tooltip and Popover</h1>
         </div>
+
+        <h3>Tooltip</h3>
+        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Close">X</button>
+
+        <h3>Popover</h3>
+
+        <button type="button" class="btn btn-default" data-toggle="popover" data-placement="top" title="Close" data-content="HIii">X</button>
 
 
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script type="text/javaScript">
+        $(function () { $('[data-toggle="tooltip"]').tooltip(); $('[data-toggle="popover"]').popover() });
+    </script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
