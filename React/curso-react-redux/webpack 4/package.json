@@ -1,0 +1,15 @@
+{
+  "name": "webpack-4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack"
+  },
+  "author": "Rafael Mario <rafaelamaralmario@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "4.8.1",
+    "webpack-cli": "2.1.3"
+  }
+}
