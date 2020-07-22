@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+
+        html {
+            box-sizing: border-box;
+        }
+
+        *, *:before, *::after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            background-color: #121212;
+            font-family: sans-serif;
+        }
+        .header {
+            background-color: #333;
+            text-align: center;
+            color: #fff;
+            padding: 16px;
+            border-radius: 4px;
+        }
+        .calculator {
+            background-color: #fff;
+            margin: 40px auto;
+            max-width: 400px;
+            padding: 16px;
+            border-radius: 4px;
+        }
+        .display {
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 1.2em;
+        }
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 16px;
+            font-size: 1.2em;
+            margin-top: 16px;
+        }
+
+        button {
+            border-radius: 4px;
+            border : 0;
+            padding: 8px;
+            background-color: #efefef;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .span2 {
+            grid-column: span 2;
+        }
+
+        button.span2 {
+            grid-column: span 2;
+        }
+
+        button.primary {
+            background-color: #ffeec2;
+            color: #c49023;
+        }
+        .history {
+            max-height: 150px;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+        .history-line{
+            cursor: pointer;
+            padding: 5px;
+            margin: 0;
+        }
+
+        .selected-history-line{
+            background-color: #1e84d0;
+            color: #fff;
+        }
+
+        .small {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+
+        const calcRegex = /^([0-9]|-|\+|\*|\/\.)*$/;
+
+        const Header = () => <div className="header">Calculator</div>;
+        
+        const Display = ({display, setDisplay, calculate}) => (
+            <input 
+                type="text" 
+                className="display" 
+                value={display} 
+                onChange ={ (event)  => {
+                    const {value} = event.target;
+                    if(calcRegex.test(value)) {
+                        setDisplay(event.target.value);
+                    }
+                }}
+                onKeyPress={ event => {
+                    const {key} = event;
+                    if(key.toLowerCase() === 'enter') {
+                        calculate();
+                    } else if(key.toLowerCase() === "c") {
+                        setDisplay("");                    
+                    }
+                }}
+            />
+            
+        );
+        
+        const Calculator = () => {
+            const [display, setDisplay] = React.useState('');
+            const [history, setHistory] = React.useState([]);
+            const [showAd, toggleAd] = React.useState(false);
+            const [showHistory, toggleHistory] = React.useState(false);
+            const [selectedHistory, selectHistory] = React.useState();
+            const [error, setError] = React.useState("");
+            const histRef = React.useRef();
+
+            React.useEffect(() => {
+                setError('');
+            }, [display])
+
+            React.useEffect(() => {
+                if(history.length > 2 && showHistory) {
+
+                    histRef.current.scrollTop = histRef.current.scrollHeight;
+                }
+            }, [history.length, showHistory])
+
+            const calculate = () => {
+                try {
+                    const result = eval(display).toString();
+                    setHistory([...history, { "item": display, result, id: new Date().getTime() }]);
+                    setDisplay(result);
+                } catch (err) {   
+                    setError(`Invalid expression: ${err.message}`)
+                }
+            }
+
+            const onButtonClick = (char) => {
+                switch (char) {
+                    case "=":
+                        calculate();
+                        break;
+                    case "C":
+                        setDisplay("");                        
+                        break;
+                    case "Del":
+                        setDisplay(display.slice(0,(display.length-1)));
+                        break;
+                    case "Ad":
+                        toggleAd(!showAd);
+                        break;
+                    case "Hist":
+                        toggleHistory(!showHistory);
+                        break;  
+                    case "AC":
+                        setDisplay("");
+                        setHistory([]);
+                        break;
+
+                    default:
+                        setDisplay((prevState)=> prevState + char.toString());
+                        break;
+                }
+            };
+
+            const historyClick = (value, id) => {
+                selectHistory(id);
+                setDisplay(value);
+            }
+
+            const getHistoryClass = (id) => {
+                return selectedHistory === id;
+            }
+
+            return (
+                <div className="calculator">
+                    {
+                        history.length && showHistory ? 
+                        <div ref={histRef} className="history">
+                            { history.map( ({item, result, id}, idx) => {
+                                return (
+                                    <p className={`history-line ${getHistoryClass(id) && 'selected-history-line'}`}  key={idx} onClick={historyClick.bind(null, item, id)}>{`${item} = ${result}`}</p>
+                                );
+                            })}
+                        </div>
+                        : null
+                    }
+                    
+                    <Display display={display} setDisplay={setDisplay} calculate={calculate}/>
+                    {
+                        error && <p className="small error">{error}</p>
+                    }
+                    {
+                       showAd && <AdvancedKeyboard onButtonClick={onButtonClick}/>
+                    }
+                    <Keyboard onButtonClick={onButtonClick}/>
+
+                    
+                </div>
+            )
+        }
+
+        const CalculatorButton = ({onButtonClick, label, className}) => <button className={className} onClick={onButtonClick.bind(null, label)}>{label}</button>
+
+        const AdvancedKeyboard = ({onButtonClick}) => {
+            const keyboard = [
+                "(", ")", "Hist", "AC"
+            ];
+
+            return(
+                <div className="keyboard">
+                    {keyboard.map((value, idx) => {
+                        return ( 
+                            <CalculatorButton 
+                                key={idx} 
+                                onButtonClick={onButtonClick} 
+                                label={value} 
+                                />
+                        )
+                    })}
+                </div>
+            )
+        }
+
+        const Keyboard = ({onButtonClick}) => {
+            const keyboard = [
+                "7", "8", "9","/","C",
+                "4","5", "6","*","Del",
+                "1", "2","3","-","Ad",
+                "0" , ".", "+", "="
+            ];
+
+            return(
+                <div className="keyboard">
+                    {keyboard.map((value, idx) => {
+                        const span2Class =  value === "0" ? "span2" : "";
+                        const primaryClass =  isNaN(value) ? "primary" : "";
+                       
+                        return ( 
+                            <CalculatorButton 
+                                key={idx} 
+                                onButtonClick={onButtonClick} 
+                                label={value} 
+                                className={ `${primaryClass} ${span2Class}` }/>
+                        )
+                    })}
+                </div>
+            )
+        }; 
+
+        const App = () => (
+            <div>
+                <Header />
+                <Calculator />
+            </div>
+        );
+
+        ReactDOM.render(
+           
+            <App />,
+            document.getElementById("root")
+        )
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render with an image 1`] = `
+<DocumentFragment>
+  .c1 {
+  width: 100%;
+  padding: 0 8px;
+}
+
+.c0 {
+  color: #fff;
+  padding: 100px;
+  background: url(http://test.com/image.jpg),rgba(0,0,0,0.4);
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+}
+
+.c2 {
+  display: inline-block;
+}
+
+.c2 p,
+.c2 li {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.c2 ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.c2 li::before {
+  color: #ffc107;
+  content: "\\2713\\0020";
+}
+
+@media (min-width:undefinedpx) {
+  .c1 {
+    padding: 0 16px;
+  }
+}
+
+@media (min-width:992px) {
+  .c1 {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+<div
+    class="c0"
+    data-testid="hero-container"
+  >
+    <div
+      class="c1"
+    >
+      <div
+        class="c2"
+      >
+        Mario Driving School
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

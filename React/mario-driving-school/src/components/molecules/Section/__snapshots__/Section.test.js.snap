@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match with snapshot 1`] = `
+<DocumentFragment>
+  .c1 {
+  width: 100%;
+  padding: 0 8px;
+}
+
+.c0 {
+  padding: 40px 0;
+}
+
+.c0 h2 {
+  margin-top: 0;
+}
+
+@media (min-width:undefinedpx) {
+  .c1 {
+    padding: 0 16px;
+  }
+}
+
+@media (min-width:992px) {
+  .c1 {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+<div
+    class="c0"
+  >
+    <div
+      class="c1"
+    />
+  </div>
+</DocumentFragment>
+`;
